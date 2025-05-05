@@ -5,6 +5,11 @@ from app.tasks import process_video
 from app.celery_worker import celery
 from app.database import SessionLocal
 from app.models import Upload
+from app import config
+
+
+base_url = config.MINIO_URL.rstrip("/") + '/' + config.MINIO_BUCKET_NAME + '/'
+
 
 router = APIRouter()
 
@@ -41,6 +46,6 @@ def task_status(task_id: str):
         "task_id": task_id,
         "status": upload.status if upload else task_result.status,
         "filename": upload.filename if upload else None,
-        "original_path": upload.original_path if upload else None,
-        "converted_path": upload.converted_path if upload else None
+        "original_path": base_url + upload.original_path if upload else None,
+        "converted_path": base_url + upload.converted_path if upload else None
     }

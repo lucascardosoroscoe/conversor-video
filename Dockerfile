@@ -8,6 +8,9 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update && apt-get install -y git ffmpeg
+RUN pip install git+https://github.com/openai/whisper.git
+
 
 COPY ./app ./app
 

@@ -5,8 +5,14 @@ from app.database import SessionLocal
 from app.models import Upload
 from typing import Optional
 from datetime import datetime
+from fastapi import HTTPException
+from app import config
+
+base_url = config.MINIO_URL.rstrip("/") + '/' + config.MINIO_BUCKET_NAME + '/'
+
 
 router = APIRouter()
+
 
 @router.get("/uploads")
 def list_uploads(
@@ -40,8 +46,8 @@ def list_uploads(
             "task_id": u.task_id,
             "filename": u.filename,
             "status": u.status,
-            "original_path": u.original_path,
-            "converted_path": u.converted_path,
+            "original_path": base_url + u.original_path if u.original_path else None,
+            "converted_path": base_url + u.converted_path if u.converted_path else None,
             "created_at": u.created_at
         } for u in results
     ]

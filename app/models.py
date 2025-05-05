@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, String, DateTime, Text
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
@@ -10,5 +10,6 @@ class Upload(Base):
     filename = Column(String, nullable=False)
     original_path = Column(String, nullable=True)
     converted_path = Column(String, nullable=True)
+    transcription = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     status = Column(String, default="PENDING")

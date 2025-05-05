@@ -120,7 +120,7 @@ Login: `minioadmin` / `minioadmin`
 ---
 
 ## 👨‍💻 Desenvolvido por
-Seu nome ou equipe aqui 👋# 🎧 FastAPI Audio Converter
+Lucas Cardoso Roscoe 👋# 🎧 FastAPI Audio Converter
 
 Este projeto é uma API desenvolvida com FastAPI que permite o upload de vídeos, conversão automática para áudio `.ogg` com codec `opus` via FFmpeg, e armazenamento dos arquivos no MinIO. O processamento é assíncrono via Celery + Redis e todos os metadados são salvos no PostgreSQL.
 
